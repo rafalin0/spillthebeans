@@ -6,15 +6,6 @@ export const bannerType = defineType({
   type: "document",
   fields: [
     defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: "buttonText",
       title: "ButtonText",
       type: "string",
@@ -22,9 +13,10 @@ export const bannerType = defineType({
     }),
     defineField({
       name: "product",
-      title: "Product",
-      type: "string",
-      validation: (rule) => rule.required(),
+      title: "Featured Product",
+      type: "reference",
+      to: [{ type: "product" }],
+      validation: (Rule: any) => Rule.required(),
     }),
     defineField({
       name: "desc",

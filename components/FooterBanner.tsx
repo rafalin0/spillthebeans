@@ -10,8 +10,6 @@ type FooterBannerProps = {
 
 const FooterBanner: React.FC<FooterBannerProps> = ({
   footerBanner: {
-    image,
-    product,
     buttonText,
     desc,
     smallText,
@@ -20,9 +18,12 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
     largeText2,
     discount,
     saleTime,
+    prodName,
+    prodImage,
+    prodSlug,
   },
 }) => {
-  const imageUrl = urlFor(image).url();
+  const imageUrl = urlFor(prodImage).url();
 
   return (
     <div className="h-[560px] mt-20 py-[80px] md:py-[15px] lg:py-[50px] px-10 bg-color-5 rounded-lg relative md:h-[400px] md:mt-[120px] w-full text-white">
@@ -41,7 +42,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
           <p className="text-lg">{smallText}</p>
           <h3 className="text-[45px] md:text-6xl font-extrabold">{midText}</h3>
           <p className="text-sm font-light leading-1 mt-5 mb-5">{desc}</p>
-          <Link href={`/product/${product}`}>
+          <Link href={`/product/${prodSlug.current}`}>
             <button className="rounded-sm py-[10px] px-4 bg-white text-color-6 text-lg font-medium cursor-pointer ">
               {buttonText}
             </button>
@@ -50,7 +51,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
 
         <img
           src={imageUrl}
-          alt={product}
+          alt={prodName}
           className="absolute w-[35%] max-w-[350px] md:min-w-[280px] md:w-[25%] right-[5%] top-[6%] md:right-[40%] md:-top-[10%] xl:-top-[18%]"
         />
       </div>
