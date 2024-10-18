@@ -1,7 +1,133 @@
-import React from "react";
+import React, { useRef } from "react";
+import Link from "next/link";
+import {
+  AiOutlineMinus,
+  AiOutlinePlus,
+  AiOutlineLeft,
+  AiOutlineShopping,
+} from "react-icons/ai";
+
+import { useStore } from "@/store/store";
+import { urlFor } from "@/sanity/lib/image";
 
 const Cart = () => {
-  return <div>Cart</div>;
+  const cartRef = useRef<HTMLDivElement>(null);
+  const {
+    cart,
+    count,
+    setShowCart,
+    removeProduct,
+    addProduct,
+    clearProduct,
+    total,
+  } = useStore((state) => state);
+
+  return (
+    <div
+      className="w-screen bg-black bg-opacity-50 fixed right-0 top-0 z-[2000] transition-all duration-100 ease-in-out"
+      ref={cartRef}
+    >
+      <div className="w-[415px] p-4 h-screen md:w-[600px] bg-white float-right md:py-10 md:px-[10px] relative flex flex-col">
+        <button
+          type="button"
+          className="mt-[35px] md:mt-0 flex items-center text-lg font-medium cursor-pointer gap-0.5 ml-[10px] bg-transparent"
+          onClick={() => setShowCart(false)}
+        >
+          <AiOutlineLeft />
+          <span className="ml-[10px]">Your Cart</span>
+          <span className="ml-[10px] text-[#f02d34]">({count} items)</span>
+        </button>
+
+        {cart.length < 1 && (
+          <div className="m-10 text-center text-color-8 flex flex-col place-self-center">
+            <AiOutlineShopping size={150} className="m-auto" />
+            <h3 className="font-semibold text-xl">
+              Your shopping bag is empty
+            </h3>
+            <Link href="/">
+              <button
+                type="button"
+                onClick={() => setShowCart(false)}
+                className="w-full max-w-[400px] py-[10px] px-3 rounded-2xl text-xl mt-[10px] uppercase bg-[#f02d34] text-white cursor-pointer transform scale-100 transition-transform duration-500 ease-in-out hover:scale-110"
+              >
+                Continue Shopping
+              </button>
+            </Link>
+          </div>
+        )}
+
+        <div className="mt-2.5 md:mt-[15px] overflow-auto  max-h-[70vh] py-5 px-2.5 mb-2">
+          {cart.length >= 1 &&
+            cart.map((item) => (
+              <div
+                className="py-5 px-[5px] flex gap-6 justify-between md:p-5"
+                key={item._id}
+              >
+                <img
+                  src={urlFor(item.image).url()}
+                  className="w-auto h-[100px] md:h-[150px] rounded-xl bg-color-11 p-4"
+                />
+                <div className="w-full">
+                  <div className="w-[200px] flex-wrap gap-2.5 md:flex-nowrap md:w-auto text-[#324d67] flex justify-between">
+                    <h5 className="text-base md:text-2xl text-[#324d67] font-semibold">
+                      {item.name}
+                    </h5>
+                    <h4 className="text-base md:text-xl text-black font-medium">
+                      ${item.price}
+                    </h4>
+                  </div>
+
+                  <div className="w-[200px] mt-[30px]  md:w-auto text-[#324d67] flex justify-between md:mt-[60px]">
+                    <p className="border border-gray-200 inline-flex w-min rounded-md">
+                      <span
+                        className="text-[#f02d34] text-base py-1.5 px-3 cursor-pointer m-auto"
+                        onClick={() => removeProduct(item._id)}
+                      >
+                        <AiOutlineMinus />
+                      </span>
+                      <span className="border-x border-x-gray-200 text-base py-1.5 px-3 cursor-pointer">
+                        {item.qty}
+                      </span>
+                      <span
+                        className="text-[#31a831] text-base py-1.5 px-3 cursor-pointer m-auto"
+                        onClick={() => addProduct(item)}
+                      >
+                        <AiOutlinePlus />
+                      </span>
+                    </p>
+
+                    <button
+                      type="button"
+                      className="text-base font-code text-[#f02d34] cursor-pointer bg-transparent decoration-dotted decoration-4 hover:underline underline-offset-4 lowercase"
+                      onClick={() => clearProduct(item._id)}
+                    >
+                      remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        {cart.length >= 1 && (
+          <div className="p-[30px] md:py-[20px] md:px-5 absolute bottom-3 w-full bg-white">
+            <div className="text-xl md:text-[22px] flex justify-between">
+              <h3>Subtotal:</h3>
+              <h3>${total}</h3>
+            </div>
+            <div className="w-[300px] m-auto md:w-[400px]">
+              <button
+                type="button"
+                className="w-full max-w-[400px] py-[10px] px-3 rounded-2xl text-xl mt-[10px] uppercase bg-[#f02d34] text-white cursor-pointer transform scale-100 transition-transform duration-500 ease-in-out hover:scale-110"
+              >
+                Pay with Stripe
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Cart;
