@@ -7,8 +7,7 @@ import HeroBanner from "@/components/HeroBanner";
 import FooterBanner from "@/components/FooterBanner";
 import Product from "@/components/Product";
 
-const PRODUCTS_QUERY = '*[_type == "product"]';
-const BANNER_QUERY = '*[_type == "banner"]';
+import { PRODUCTS_QUERY, BANNER_QUERY } from "@/sanity/queries";
 
 const options = { next: { revalidate: 30 } };
 
