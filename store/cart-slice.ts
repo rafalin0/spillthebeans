@@ -1,8 +1,8 @@
 import { StateCreator } from "zustand";
 import { SanityDocument } from "next-sanity";
 import { CartProduct } from "@/types/cartProduct";
-import toast from "react-hot-toast";
 
+// Define cart state and actions
 interface CartState {
   cart: CartProduct[];
   total: number;
@@ -11,8 +11,8 @@ interface CartState {
 }
 
 interface CartActions {
-  addProduct: (product: SanityDocument) => void;
-  removeProduct: (productId: string) => void;
+  addProductToCart: (product: SanityDocument, quantity: number) => void;
+  editCartProduct: (product: SanityDocument, quantity?: number) => void;
   clearProduct: (productId: string) => void;
   clearCart: () => void;
   setShowCart: (value: boolean) => void;
@@ -20,6 +20,7 @@ interface CartActions {
 
 export type CartSlice = CartState & CartActions;
 
+// Zustand store slice
 export const createCartSlice: StateCreator<CartSlice, [], [], CartSlice> = (
   set,
   get
@@ -29,70 +30,87 @@ export const createCartSlice: StateCreator<CartSlice, [], [], CartSlice> = (
   count: 0,
   showCart: false,
 
-  setShowCart: (value: boolean) => set({ showCart: value }),
+  setShowCart: (value) => set({ showCart: value }),
 
-  addProduct: (product: SanityDocument) => {
-    const { cart } = get();
-    const updatedCart = updateCart(cart, product, 1);
-    const updatedCount = calculateCount(updatedCart);
-    const updatedTotal = calculateTotal(updatedCart);
-
-    toast.success(`1 ${product.name} added to the cart.`);
-    set({ cart: updatedCart, count: updatedCount, total: updatedTotal });
+  addProductToCart: (product, quantity) => {
+    const controlledQty = Math.min(Math.max(1, quantity), 50);
+    const updatedCart = modifyCart(get().cart, product, controlledQty, true);
+    updateCartState(set, updatedCart);
   },
 
-  removeProduct: (productId: string) => {
-    const { cart } = get();
-    const updatedCart = updateCart(
-      cart,
-      { _id: productId } as SanityDocument,
-      -1
-    );
-    const updatedCount = calculateCount(updatedCart);
-    const updatedTotal = calculateTotal(updatedCart);
-    set({ cart: updatedCart, count: updatedCount, total: updatedTotal });
+  editCartProduct: (product, quantity = 1) => {
+    const controlledQty = Math.min(Math.max(1, quantity), 50);
+    const updatedCart = modifyCart(get().cart, product, controlledQty, false);
+    updateCartState(set, updatedCart);
   },
 
-  clearProduct: (productId: string) => {
-    const { cart } = get();
-    const updatedCart = clearProductById(cart, productId);
-    const updatedCount = calculateCount(updatedCart);
-    const updatedTotal = calculateTotal(updatedCart);
-    set({ cart: updatedCart, count: updatedCount, total: updatedTotal });
+  clearProduct: (productId) => {
+    const updatedCart = get().cart.filter((item) => item._id !== productId);
+    updateCartState(set, updatedCart);
   },
 
-  clearCart: () => set({ cart: [], count: 0 }),
+  clearCart: () => set({ cart: [], count: 0, total: 0 }),
 });
 
 // Helper functions
 
-function updateCart(
+// Adds or updates a product in the cart with specified quantity
+function modifyCart(
   cart: CartProduct[],
   product: SanityDocument,
-  qtyChange: number
+  qtyChange: number,
+  isAdditive: boolean = false
 ): CartProduct[] {
-  return cart.some((item) => item._id === product._id)
-    ? cart
-        .map((item) =>
-          item._id === product._id
-            ? { ...item, qty: Math.max(item.qty + qtyChange, 0) }
-            : item
-        )
-        .filter((item) => item.qty > 0) // Remove items with 0 quantity
-    : [...cart, { ...product, qty: 1 }];
+  const cartProduct = createCartProduct(product);
+  const existingProductIndex = cart.findIndex(
+    (item) => item._id === product._id
+  );
+
+  if (existingProductIndex !== -1) {
+    const updatedCart = [...cart];
+    const existingProduct = updatedCart[existingProductIndex];
+    const updatedQty = isAdditive
+      ? Math.min(existingProduct.qty + qtyChange, 50)
+      : qtyChange;
+
+    if (updatedQty > 0) {
+      updatedCart[existingProductIndex] = {
+        ...existingProduct,
+        qty: updatedQty,
+      };
+    } else {
+      updatedCart.splice(existingProductIndex, 1); // Remove if quantity is 0
+    }
+
+    return updatedCart;
+  }
+
+  return qtyChange > 0 ? [...cart, { ...cartProduct, qty: qtyChange }] : cart;
 }
 
-function clearProductById(
-  cart: CartProduct[],
-  productId: string
-): CartProduct[] {
-  return cart.filter((item) => item._id !== productId);
+// Creates a new cart product from a SanityDocument
+function createCartProduct(product: SanityDocument): CartProduct {
+  return {
+    _id: product._id,
+    _rev: product._rev,
+    _type: product._type,
+    _createdAt: product._createdAt,
+    _updatedAt: product._updatedAt,
+    qty: 1,
+    priceId: product.priceId || "",
+    name: product.name || "Unknown Product",
+    slug: product.slug || "unknown-slug",
+    price: product.price || 0,
+    image: product.image,
+  };
 }
 
-function calculateCount(cart: CartProduct[]): number {
-  return cart.reduce((totalCount, item) => totalCount + item.qty, 0);
-}
-
-function calculateTotal(cart: CartProduct[]): number {
-  return cart.reduce((total, item) => total + item.qty * item.price, 0);
+// Updates cart state with recalculated total and count
+function updateCartState(set: Function, updatedCart: CartProduct[]) {
+  const count = updatedCart.reduce((total, item) => total + item.qty, 0);
+  const total = updatedCart.reduce(
+    (sum, item) => sum + item.qty * item.price,
+    0
+  );
+  set({ cart: updatedCart, count, total });
 }
