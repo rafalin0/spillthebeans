@@ -15,7 +15,7 @@ const Cart = () => {
       className="w-screen bg-black text-fg-1 bg-opacity-50 fixed right-0 top-0 z-[2000] transition-all duration-100 ease-in-out"
       ref={cartRef}
     >
-      <div className="w-full p-4 h-screen md:w-[600px] bg-bg-4 float-right md:py-10 md:px-[10px] relative flex flex-col">
+      <div className="w-full p-4 h-screen md:w-[600px] bg-bg-4 float-right md:py-10 md:px-[10px] relative flex flex-col justify-between">
         <button
           type="button"
           className="mt-[35px] md:mt-0 flex items-center text-lg font-medium cursor-pointer gap-0.5 ml-[10px] bg-transparent "
@@ -44,13 +44,13 @@ const Cart = () => {
           </div>
         )}
 
-        <div className="mt-2.5 md:mt-[15px] overflow-auto max-h-[70vh] pt-7.5 pb-15 md:mb-2 gap-1">
+        <div className="mt-2.5 md:mt-[15px] overflow-auto h-full pt-7.5 pb-15 md:mb-2 gap-1 basis-auto">
           {cart.length >= 1 &&
             cart.map((item) => <CartItem product={item} key={item._id} />)}
         </div>
 
         {cart.length >= 1 && (
-          <div className="p-5 md:py-[20px] absolute bottom-3 right-0 w-full  gap-3 flex flex-col border-t bg-bg-4 border-mg-3">
+          <div className="p-5 md:pt-5 w-full  gap-3 flex flex-col border-t bg-bg-4 border-mg-3">
             <div className="text-xl flex justify-between md:justify-end gap-3">
               <h3>Subtotal:</h3>
               <h3 className="font-bold md:text-2xl">₱ {total}</h3>
