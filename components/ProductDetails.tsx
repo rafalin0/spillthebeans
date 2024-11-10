@@ -1,6 +1,7 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
+import Image from "next/image";
 import { type SanityDocument } from "next-sanity";
 import {
   AiOutlineMinus,
@@ -48,7 +49,7 @@ const ProductDetails = ({ product, products }: ProductDetailsProps) => {
       <div className="max-w-[1400px] mx-auto w-full p-5">
         <div className="flex flex-wrap md:flex-nowrap gap-10 md:py-10 text-fg-1">
           <div className="image-container h-[20%] w-full md:h-[420px] md:w-[420px] xl:h-[600px] xl:w-[600px] cursor-pointer bg-radial-gradient transition duration-300 ease-in-out hover: hover:bg-rg-hover rounded-2xl">
-            <img
+            <Image
               src={productImageUrl}
               className="w-1/2 md:w-auto md:h-[400px] xl:h-[560px] p-5 mx-auto dark:dark-image"
               alt={name}

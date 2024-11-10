@@ -1,6 +1,7 @@
-import { SanityDocument } from "next-sanity";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { SanityDocument } from "next-sanity";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -51,7 +52,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
           </Link>
         </div>
 
-        <img
+        <Image
           src={imageUrl}
           alt={prodName}
           className="absolute w-[35%] max-w-[350px] md:min-w-[280px] md:w-[25%] right-[5%] top-[6%] md:right-[40%] md:-top-[10%] xl:-top-[18%] dark:dark-image "

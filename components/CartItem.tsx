@@ -1,10 +1,13 @@
 "use client";
 
+import React, { ChangeEvent, useEffect, useState } from "react";
+import Image from "next/image";
+
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+
 import { urlFor } from "@/sanity/lib/image";
 import { useStore } from "@/store/store";
 import { CartProduct } from "@/types/cartProduct";
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const CartItem = ({ product }: { product: CartProduct }) => {
   const { editCartProduct, clearProduct } = useStore((state) => state);
@@ -31,7 +34,7 @@ const CartItem = ({ product }: { product: CartProduct }) => {
   return (
     <div className="py-5 px-[5px] flex gap-3 justify-between md:p-5">
       <div className="w-auto bg-bg-2  rounded-xl">
-        <img
+        <Image
           src={imageUrl}
           className="h-[100px] md:h-[150px] p-4 dark:dark-image"
           alt={product.name}

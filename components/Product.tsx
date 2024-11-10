@@ -1,6 +1,7 @@
-import { SanityDocument } from "next-sanity";
-import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { SanityDocument } from "next-sanity";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -17,7 +18,7 @@ const Product: React.FC<ProductProps> = ({
       <Link href={`/products/${slug.current}`}>
         <div className="cursor-pointer transform scale-100 transition-transform duration-500 ease text-fg-1 hover:scale-110">
           <div className="bg-bg-2 rounded-3xl transform scale-100 transition-transform duration-500 ease shadow-md">
-            <img
+            <Image
               src={imageUrl}
               width={250}
               alt={name}

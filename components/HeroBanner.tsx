@@ -1,6 +1,7 @@
-import { SanityDocument } from "next-sanity";
-import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { SanityDocument } from "next-sanity";
 
 import { urlFor } from "@/sanity/lib/image";
 
@@ -31,7 +32,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         <h1 className="text-bg-4 text-[50px] md:text-[10em] uppercase font-bold z-0 absolute font-playfair">
           {largeText1} {largeText2}
         </h1>
-        <img
+        <Image
           src={imageUrl}
           alt={prodName}
           className="absolute -rotate-12 md:-top-[15%] md:-right-[10%] xl:right-[20%] md:h-[750px] h-[50%] top-[30%] right-0 dark:dark-image"
