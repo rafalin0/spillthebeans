@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { type SanityDocument } from "next-sanity";
 import {
   AiOutlineMinus,
@@ -20,11 +20,7 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product, products }: ProductDetailsProps) => {
-  const {
-    addProductToCart: handleAddToCart,
-    editCartProduct,
-    setShowCart,
-  } = useStore((state) => state);
+  const { addProductToCart: handleAddToCart } = useStore((state) => state);
 
   const { name, image, description, price } = product;
 
