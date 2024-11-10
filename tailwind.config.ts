@@ -1,8 +1,9 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,21 +12,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        color: {
-          1: "#B17457",
-          2: "#BF935B",
-          3: "#A47343",
-          4: "#845333",
-          5: "#6F4323",
-          6: "#543114",
-          7: "#351F17",
-          8: "#4A4947",
-          9: "#FAF7F0",
-          10: "#D8D2C2",
-          11: "#C9BAA1",
-          12: "#DCDCDC",
+        bg: {
+          1: "rgb(var(--color-bg1))",
+          2: "rgb(var(--color-bg2))",
+          3: "rgb(var(--color-bg3))",
+          4: "rgb(var(--color-bg4))",
+          5: "rgb(var(--color-bg5))",
+          6: "rgb(var(--color-bg6))",
+        },
+        fg: {
+          1: "rgb(var(--color-fg1))",
+          2: "rgb(var(--color-fg2))",
+          3: "rgb(var(--color-fg3))",
+          4: "rgb(var(--color-fg4))",
+          5: "rgb(var(--color-fg5))",
+          6: "rgb(var(--color-fg6))",
+        },
+        mg: {
+          1: "rgb(var(--color-mg1))",
+          2: "rgb(var(--color-mg2))",
+          3: "rgb(var(--color-mg3))",
         },
       },
       borderRadius: {
@@ -34,9 +40,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-sora)", ...fontFamily.sans],
-        code: "var(--font-code)",
-        grotesk: "var(--font-grotesk)",
+        body: ["Montserrat", "sans-serif"],
+        monts: ["Montserrat", "sans-serif"],
+        playfair: ["Playfair Display", "serif"],
       },
       keyframes: {
         marquee: {
@@ -46,9 +52,32 @@ const config: Config = {
       },
       animation: {
         marquee: "marquee 15s linear infinite",
+        "scale-hover": "transform 500ms ease-in-out",
+      },
+      backgroundImage: {
+        "radial-gradient":
+          "radial-gradient(circle, rgba(var(--color-bg3),1) 0%, rgba(var(--color-bg2),1) 100%)",
+        "rg-hover":
+          "radial-gradient(circle, rgba(var(--color-bg5),1) 0%, rgba(var(--color-fg5),1) 100%)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities }: PluginAPI) {
+      addUtilities({
+        ".dark-image": {
+          "@apply dark:grayscale dark:invert": {},
+        },
+        ".scale-hover": {
+          transition: "transform 500ms ease",
+          transform: "scale(1)",
+          "&:hover": {
+            transform: "scale(1.25)",
+          },
+        },
+      });
+    },
+  ],
 };
 export default config;
