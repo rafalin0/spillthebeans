@@ -4,11 +4,11 @@ import Footer from "./Footer";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="p-[10px]">
+    <div className="bg-bg-1 min-h-screen flex flex-col justify-between">
       <header>
         <Navbar />
       </header>
-      <main className="max-w-[1400px] mx-auto w-full">{children}</main>
+      <main>{children}</main>
       <footer>
         <Footer />
       </footer>

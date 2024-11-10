@@ -14,15 +14,17 @@ const Product: React.FC<ProductProps> = ({
   const imageUrl = urlFor(image).url();
   return (
     <div>
-      <Link href={`/product/${slug.current}`}>
-        <div className="cursor-pointer transform scale-100 transition-transform duration-500 ease text-color-7 hover:scale-110">
-          <img
-            src={imageUrl}
-            width={250}
-            height={250}
-            alt={name}
-            className="rounded-lg bg-color-10 transform scale-100 transition-transform duration-500 ease mx-auto px-20 py-6"
-          />
+      <Link href={`/products/${slug.current}`}>
+        <div className="cursor-pointer transform scale-100 transition-transform duration-500 ease text-fg-1 hover:scale-110">
+          <div className="bg-bg-2 rounded-3xl transform scale-100 transition-transform duration-500 ease shadow-md">
+            <img
+              src={imageUrl}
+              width={250}
+              alt={name}
+              className="mx-auto px-20 py-6 dark:dark-image"
+            />
+          </div>
+
           <p className="font-medium">{name}</p>
           <p className="font-extrabold mt-1">Php {price}</p>
         </div>

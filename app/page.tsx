@@ -25,19 +25,24 @@ const Home = async () => {
   const banner = bannerData[0];
 
   return (
-    <div>
+    <div className="max-w-[1400px] mx-auto w-full p-5">
       <HeroBanner heroBanner={banner} />
-      <div className="text-center my-10 mx-0 text-color-1">
-        <h2 className="text-[40px] font-extrabold">Best Selling Products</h2>
-        <p className="text-base font-extralight">
-          Ducimus quos molestias labore omnis.
-        </p>
+      <div className="my-14">
+        <div className="text-center my-10 mx-0 text-fg-1">
+          <h2 className="text-2xl md:text-[40px] md:leading-normal font-bold font-playfair">
+            Best Selling Products
+          </h2>
+          <p className="text-base font-normal">
+            Ducimus quos molestias labore omnis.
+          </p>
+        </div>
+        <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">
+          {products.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </div>
       </div>
-      <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">
-        {products.map((product) => (
-          <Product key={product._id} product={product} />
-        ))}
-      </div>
+
       <FooterBanner footerBanner={banner} />
     </div>
   );
