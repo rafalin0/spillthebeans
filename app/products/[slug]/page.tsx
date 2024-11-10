@@ -11,15 +11,17 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function getProduct(slug: string) {
+interface PageProps {
+  params: { slug: string };
+}
+
+const Page = async ({ params }: PageProps) => {
+  // Fetch product and related products using async functions
+  const { slug } = params;
   const product = await client.fetch(PRODUCT_QUERY, { slug });
   const relatedProducts = await client.fetch(PRODUCTS_QUERY);
-  return { product, relatedProducts };
-}
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { product, relatedProducts } = await getProduct(params.slug);
-
-  // Pass the product and related products as props to the client-side component
   return <ProductDetails product={product} products={relatedProducts} />;
-}
+};
+
+export default Page;
