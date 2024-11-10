@@ -9,19 +9,9 @@ import Product from "@/components/Product";
 
 import { PRODUCTS_QUERY, BANNER_QUERY } from "@/sanity/queries";
 
-const options = { next: { revalidate: 30 } };
-
 const Home = async () => {
-  const products = await client.fetch<SanityDocument[]>(
-    PRODUCTS_QUERY,
-    {},
-    options
-  );
-  const bannerData = await client.fetch<SanityDocument[]>(
-    BANNER_QUERY,
-    {},
-    options
-  );
+  const products = await client.fetch<SanityDocument[]>(PRODUCTS_QUERY, {});
+  const bannerData = await client.fetch<SanityDocument[]>(BANNER_QUERY, {});
   const banner = bannerData[0];
 
   return (
@@ -37,7 +27,7 @@ const Home = async () => {
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full">
-          {products.map((product) => (
+          {products.slice(0, 4).map((product) => (
             <Product key={product._id} product={product} />
           ))}
         </div>
