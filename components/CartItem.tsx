@@ -33,17 +33,19 @@ const CartItem = ({ product }: { product: CartProduct }) => {
 
   return (
     <div className="py-5 px-[5px] flex gap-3 justify-between md:p-5">
-      <div className="w-auto bg-bg-2  rounded-xl">
+      <div className="w-1/4 md:w-1/5 bg-bg-2  rounded-xl">
         <Image
           src={imageUrl}
-          className="h-[100px] md:h-[150px] p-4 dark:dark-image"
+          width={900}
+          height={1200}
+          className="p-3 md:p-5 dark:dark-image"
           alt={product.name}
         />
       </div>
 
       <div className="w-3/4">
         <div className=" flex-wrap gap-2.5 md:flex-nowrap w-auto text-fg-2 flex justify-between">
-          <h5 className="text-base md:text-2xl font-semibold">
+          <h5 className="text-base md:text-xl font-semibold truncate w-[70%] md:w-full">
             {product.name}
           </h5>
           <h4 className="text-base md:text-xl text-fg-1 font-medium">

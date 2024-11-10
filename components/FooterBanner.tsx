@@ -44,7 +44,9 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
         <div className="leading-snug text-color-bg2">
           <p className="text-lg">{smallText}</p>
           <h3 className="text-[45px] md:text-6xl font-extrabold">{midText}</h3>
-          <p className="text-sm font-light leading-1 mt-5 mb-5">{desc}</p>
+          <p className="hidden md:block text-sm font-light leading-1 mt-5 mb-5">
+            {desc}
+          </p>
           <Link href={`/products/${prodSlug.current}`}>
             <button className="rounded-sm py-[10px] px-4 bg-bg-5 text-fg-2 hover:text-bg-6 text-lg font-bold cursor-pointer ">
               {buttonText}
@@ -55,7 +57,9 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
         <Image
           src={imageUrl}
           alt={prodName}
-          className="absolute w-[35%] max-w-[350px] md:min-w-[280px] md:w-[25%] right-[5%] top-[6%] md:right-[40%] md:-top-[10%] xl:-top-[18%] dark:dark-image "
+          width={900}
+          height={1200}
+          className="absolute max-w-[50%]  md:max-w-[350px] md:min-w-[280px] md:w-[25%] right-[5%] top-[6%] md:right-[40%] md:-top-[10%] xl:-top-[18%] dark:dark-image "
         />
       </div>
     </div>

@@ -35,7 +35,9 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         <Image
           src={imageUrl}
           alt={prodName}
-          className="absolute -rotate-12 md:-top-[15%] md:-right-[10%] xl:right-[20%] md:h-[750px] h-[50%] top-[30%] right-0 dark:dark-image"
+          width={900}
+          height={1200}
+          className="max-w-[50%]  md:max-w-[35%] absolute -rotate-12 md:-top-[15%] md:-right-[10%] xl:right-[20%] top-[30%] right-0 dark:dark-image"
         />
 
         <Link href={`/products/${prodSlug.current}`}>

@@ -44,7 +44,7 @@ const Cart = () => {
           </div>
         )}
 
-        <div className="mt-2.5 md:mt-[15px] overflow-auto max-h-[70vh] py-5 pt-2.5 pb-10 md:mb-2 gap-2">
+        <div className="mt-2.5 md:mt-[15px] overflow-auto max-h-[70vh] pt-7.5 pb-15 md:mb-2 gap-1">
           {cart.length >= 1 &&
             cart.map((item) => <CartItem product={item} key={item._id} />)}
         </div>
