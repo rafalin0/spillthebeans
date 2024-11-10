@@ -5,7 +5,8 @@ export const PRODUCTS_QUERY = `
     slug,
     image,
     price,
-    description
+    priceId,
+    description,
   }
 `;
 
@@ -16,7 +17,8 @@ export const PRODUCT_QUERY = `
     slug,
     image,
     price,
-    description
+    priceId,
+    description,
   }
 `;
 
