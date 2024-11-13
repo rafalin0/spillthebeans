@@ -33,7 +33,7 @@
   /* Dark Mode Variables */
   .dark {
     /* Background Colors */
-    --color-bg1: 10, 8, 7;
+    --color-bg1: 27, 24, 23;
     --color-bg2: 62, 46, 35;
     --color-bg3: 34, 22, 20;
     --color-bg4: 25, 24, 24;
@@ -41,11 +41,11 @@
     --color-bg6: 0, 0, 0;
 
     /* Foreground Colors */
-    --color-fg1: 221, 159, 104;
+    --color-fg1: 191, 139, 92;
     --color-fg2: 189, 135, 87;
     --color-fg3: 150, 120, 105;
     --color-fg4: 130, 100, 80;
-    --color-fg5: 255, 80, 80;
+    --color-fg5: 255, 189, 89;
     --color-fg6: 150, 120, 105;
 
     /* Modifier Colors */
