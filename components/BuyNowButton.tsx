@@ -6,9 +6,11 @@ import { SanityDocument } from "next-sanity";
 const BuyNowButton = ({
   product,
   quantity,
+  classes,
 }: {
   product: SanityDocument;
   quantity: number;
+  classes: string;
 }) => {
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -43,10 +45,7 @@ const BuyNowButton = ({
   };
 
   return (
-    <button
-      onClick={handleCheckout}
-      className="w-[150px] md:w-[200px] py-2.5 px-5 mt-10 text-[18px] font-medium text-white bg-fg-2  transform transition-transform duration-500 ease-linear hover:scale-110 cursor-pointer rounded-sm"
-    >
+    <button onClick={handleCheckout} className={classes}>
       Buy Now
     </button>
   );

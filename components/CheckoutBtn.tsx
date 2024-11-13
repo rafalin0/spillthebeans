@@ -41,7 +41,7 @@ const CheckoutButton = () => {
   return (
     <button
       onClick={handleCheckout}
-      className="mx-auto w-full max-w-[350px] py-[10px] px-3 rounded-sm text-xl mt-[10px] uppercase bg-fg-1 text-bg-4 cursor-pointer hover:bg-fg-2"
+      className="mx-auto w-full max-w-[350px] py-2 px-3 rounded-sm text-sm md:text-lg mt-[10px] uppercase bg-fg-1 text-bg-4 cursor-pointer hover:bg-fg-2"
     >
       Check Out
     </button>

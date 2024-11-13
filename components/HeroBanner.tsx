@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
 
+import { AiOutlineRight } from "react-icons/ai";
+
 import { urlFor } from "@/sanity/lib/image";
 
 type HeroBannerProps = {
@@ -25,11 +27,18 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   const imageUrl = urlFor(prodImage).url();
 
   return (
-    <div className="relative h-[560px] leading-snug md:leading-[0.9] w-full py-[100px] px-[40px] bg-radial-gradient rounded-3xl md:h-[500px] overflow-hidden text-fg-1">
-      <div>
-        <p className="text-xl">{smallText}</p>
-        <h3 className="text-[40px] md:text-6xl font-bold ">{midText}</h3>
-        <h1 className="text-bg-4 text-[50px] md:text-[10em] uppercase font-bold z-0 absolute font-playfair">
+    <div className="relative overflow-hidden bg-radial-gradient rounded-3xl  h-[95svh] w-full p-[5%] md:py-[100px] md:px-10 md:h-[500px] text-fg-1 leading-[0.9]">
+      <div className="mt-3 md:mt-0 flex flex-col justify-between">
+        <div className="flex flex-col mt-2 md:mt-0 z-20 md:z-0">
+          <p className=" text-base md:text-xl order-2 md:order-1 ">
+            {smallText}
+          </p>
+          <h2 className="text-4xl md:text-6xl font-bold md:order-2">
+            {midText}
+          </h2>
+        </div>
+
+        <h1 className="text-bg-4 text-[5em] md:text-[10em] uppercase font-bold z-0 absolute font-playfair bottom-[15%] md:bottom-[5%]">
           {largeText1} {largeText2}
         </h1>
         <Image
@@ -37,22 +46,23 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
           alt={prodName}
           width={900}
           height={1200}
-          className="max-w-[50%]  md:max-w-[35%] absolute -rotate-12 md:-top-[15%] md:-right-[10%] xl:right-[20%] top-[30%] right-0 dark:dark-image"
+          className="max-w-[55%] md:max-w-[35%] absolute md:-rotate-12 md:-top-[15%] md:-right-[10%] xl:right-[20%] top-[16%] right-[22.5%] dark:dark-image"
         />
 
         <Link href={`/products/${prodSlug.current}`}>
           <button
             type="button"
-            className=" absolute py-[10px] px-4 text-bg-1 text-lg cursor-pointer mt-[160px] md:mt-[200px] md:py-4 md:px-8 rounded-sm bg-fg-6 hover:bg-fg-2 z-10"
+            className="flex gap-1 items-center absolute cursor-pointer rounded-sm bg-fg-6 hover:bg-fg-2 z-10 text-bg-1 text-base md:text-lg py-[10px] pr-3 pl-5 md:py-4 md:pr-6 md:pl-8 bottom-[5%] right-[5%] md:bottom-[7%] md:right-[84%] "
           >
-            {buttonText}
+            {buttonText} <AiOutlineRight />
           </button>
         </Link>
-
-        <div className="absolute right-[10%] w-[300px] leading-snug flex flex-col bottom-[60px] md:bottom-[5%] md:right-[3%] font-monts">
-          <h5 className="mb-3 font-bold text-base self-end">Description</h5>
-          <p className="text-end">{desc}</p>
-        </div>
+      </div>
+      <div className="absolute w-2/3 md:w-[300px] leading-snug flex flex-col bottom-[20%] md:bottom-[5%] right-[5%] md:right-[3%] font-monts">
+        <h3 className="mb-3 font-bold text-sm md:text-base self-end">
+          Description
+        </h3>
+        <p className="text-sm md:text-base text-end">{desc}</p>
       </div>
     </div>
   );

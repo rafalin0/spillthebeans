@@ -19,10 +19,10 @@ const Home = async () => {
       <HeroBanner heroBanner={banner} />
       <div className="my-14">
         <div className="text-center my-10 mx-0 text-fg-1">
-          <h2 className="text-2xl md:text-[40px] md:leading-normal font-bold font-playfair">
+          <h2 className="text-xl md:text-3xl md:leading-normal font-bold font-playfair">
             Best Selling Products
           </h2>
-          <p className="text-base font-normal">
+          <p className="text-xs md:text-sm font-normal">
             Ducimus quos molestias labore omnis.
           </p>
         </div>
