@@ -136,12 +136,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Here are some sample screenshots of the Spill the Beans app:
 
 <div align="center" >
-<img src="https://i.ibb.co/VWGd1jj/Product-Page.png" width="22.5%" alt="Product-Page" border="0">
-<img src="https://i.ibb.co/SQPgqXW/Homepage.png" width="22.5%" alt="Homepage" border="0">
-<img src="https://i.ibb.co/VqJKV0P/Homepage-dark.png" width="22.5%"  alt="Homepage-dark" border="0">
-<img src="https://i.ibb.co/T89SjDg/Product-Page-dark.png" width="22.5%"  alt="Product-Page-dark" border="0">
+
+<img src="https://i.ibb.co/swZ9h4W/home-page.png" width="22.5%" alt="Homepage" border="0">
+<img src="https://i.ibb.co/QDKYQ8Y/home-page-dark.png" width="22.5%"  alt="Homepage-dark" border="0">
+<img src="https://i.ibb.co/Ns6wT9K/mobile-product2-dark.jpg" width="15%" alt="mobile-product2-dark" border="0">
+<img src="https://i.ibb.co/fvpmfGB/mobile-product-dark.jpg" width="15%" alt="mobile-product-dark" border="0">
+<img src="https://i.ibb.co/HKZ6Dt8/mobile-cart-dark.jpg" width="15%" alt="mobile-cart-dark" border="0">
 <img src="https://i.ibb.co/pKLRGgk/Products-Page.png" width="22.5%" alt="Products-Page" border="0">
-<img src="https://i.ibb.co/nkS25QF/cart.png" width="22.5%" alt="cart" border="0">
+<img src="https://i.ibb.co/XVBF9XG/cart.png" width="22.5%" alt="cart" border="0">
 <img src="https://i.ibb.co/S3VTyqT/Checkout-Page.png" width="22.5%" alt="Checkout-Page" border="0">
 <img src="https://i.ibb.co/Gs96VjN/Successful-Payment.png" width="22.5%" alt="Successful-Payment" border="0">
 </div>
