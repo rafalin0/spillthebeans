@@ -59,9 +59,9 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         </Link>
       </div>
       <div className="absolute w-2/3 md:w-[300px] leading-snug flex flex-col bottom-[20%] md:bottom-[5%] right-[5%] md:right-[3%] font-monts">
-        <h3 className="mb-3 font-bold text-sm md:text-base self-end">
+        <h2 className="mb-3 font-bold text-sm md:text-base self-end">
           Description
-        </h3>
+        </h2>
         <p className="text-sm md:text-base text-end">{desc}</p>
       </div>
     </div>
