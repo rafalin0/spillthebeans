@@ -49,9 +49,9 @@ const ProductDetails = ({ product, products }: ProductDetailsProps) => {
                 </p>
               </div>
 
-              <h3 className="mt-2.5 font-bold text-sm md:text-base">
+              <h2 className="mt-2.5 font-bold text-sm md:text-base">
                 Details:
-              </h3>
+              </h2>
               <ProductDescription
                 description={description}
                 classes="mt-2.5 text-sm md:text-base"
