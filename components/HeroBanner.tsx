@@ -3,9 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { SanityDocument } from "next-sanity";
 
-import { AiOutlineRight } from "react-icons/ai";
-
 import { urlFor } from "@/sanity/lib/image";
+import BannerButton from "./BannerButton";
 
 type HeroBannerProps = {
   heroBanner: SanityDocument;
@@ -50,12 +49,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         />
 
         <Link href={`/products/${prodSlug.current}`}>
-          <button
-            type="button"
-            className="flex gap-1 items-center absolute cursor-pointer rounded-sm bg-fg-6 hover:bg-fg-2 z-10 text-bg-1 text-base md:text-lg py-[10px] pr-3 pl-5 md:py-4 md:pr-6 md:pl-8 bottom-[5%] right-[5%] md:bottom-[7%] md:right-[84%] "
-          >
-            {buttonText} <AiOutlineRight />
-          </button>
+          <BannerButton buttonText={buttonText} containerClasses="bg-fg-4 absolute bottom-[5%] right-[5%] md:bottom-[7%] md:right-[84%]" buttonClasses="bg-fg-6 z-10 text-bg-1 text-base md:text-lg border-fg-4"/>
         </Link>
       </div>
       <div className="absolute w-2/3 md:w-[300px] leading-snug flex flex-col bottom-[20%] md:bottom-[5%] right-[5%] md:right-[3%] font-monts">

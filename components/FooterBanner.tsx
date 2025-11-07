@@ -3,9 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { SanityDocument } from "next-sanity";
 
-import { AiOutlineRight } from "react-icons/ai";
-
 import { urlFor } from "@/sanity/lib/image";
+import BannerButton from "./BannerButton";
 
 type FooterBannerProps = {
   footerBanner: SanityDocument;
@@ -29,7 +28,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
   const imageUrl = urlFor(prodImage).url();
 
   return (
-    <div className="h-[560px] mt-20 bg-fg-3 rounded-3xl relative md:h-[400px] md:mt-[120px] w-full text-bg-1 overflow-hidden md:overflow-visible z-0">
+    <div className="h-[560px] mt-20 bg-fg-3 rounded-3xl relative md:h-[400px] md:mt-[120px] w-full text-bg-1 overflow-hidden md:overflow-visible z-0 border-2 border-fg-1">
       <div className="flex flex-wrap gap-5 md:flex-nowrap md:gap-0 md:justify-between  overflow-hidden w-full h-full">
         <div className="relative z-0 p-8 h-1/2 md:h-full flex flex-col justify-start md:justify-between w-full overflow-hidden rounded-3xl">
           <p className="text-9xl wrap min-w-full md:text-8xl font-playfair text-end md:text-start text-bg-5 md:text-bg-6 font-black md:mt-6 order-last md:order-1">
@@ -54,9 +53,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
           </div>
 
           <Link href={`/products/${prodSlug.current}`}>
-            <button className="md:mt-5 flex gap-1 items-center rounded-sm py-[10px] px-4 text-bg-1 bg-fg-5 text-lg font-bold cursor-pointer z-40 pr-3 pl-5 md:py-4 md:pr-6 md:pl-8 hover:bg-bg-1 border-2  border-bg-1  hover:text-fg-5 ">
-              {buttonText} <AiOutlineRight />
-            </button>
+            <BannerButton buttonText={buttonText} containerClasses="bg-bg-1 md:mt-5" buttonClasses=" border-bg-1 text-bg-1 bg-fg-5 text-lg font-bold z-40"/>
           </Link>
         </div>
 
