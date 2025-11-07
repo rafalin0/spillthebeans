@@ -10,7 +10,7 @@ interface BannerButtonProps {
 const BannerButton: React.FC<BannerButtonProps> = ({buttonText, containerClasses = "", buttonClasses=""}) => {
   return (
     <div className={containerClasses}>
-        <div className={`${buttonClasses} flex gap-1 items-center py-[10px] px-4 cursor-pointer pr-3 pl-5 md:py-[10px] md:pr-6 md:pl-8 border-2  hover:translate-y-[-10px] hover:translate-x-[10px] transition-all duration-300 ease-in-out`}>
+        <div className={`${buttonClasses} flex gap-1 items-center py-[10px] px-4 cursor-pointer pr-3 pl-5 md:py-[10px] md:pr-6 md:pl-8 border-2  hover:translate-y-[-10px] hover:translate-x-[10px] transition-all duration-300 ease-in-out min-h-[30px]`}>
             {buttonText} <AiOutlineRight />
         </div>
     </div>
