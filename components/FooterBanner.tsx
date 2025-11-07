@@ -54,7 +54,7 @@ const FooterBanner: React.FC<FooterBannerProps> = ({
           </div>
 
           <Link href={`/products/${prodSlug.current}`}>
-            <button className="md:mt-5 flex gap-1 items-center rounded-sm py-[10px] px-4 text-bg-1 bg-fg-5 text-lg font-bold cursor-pointer z-40 pr-3 pl-5 md:py-4 md:pr-6 md:pl-8 hover:bg-bg-1  hover:text-fg-5 ">
+            <button className="md:mt-5 flex gap-1 items-center rounded-sm py-[10px] px-4 text-bg-1 bg-fg-5 text-lg font-bold cursor-pointer z-40 pr-3 pl-5 md:py-4 md:pr-6 md:pl-8 hover:bg-bg-1 border-bg-1  hover:text-fg-5 ">
               {buttonText} <AiOutlineRight />
             </button>
           </Link>
