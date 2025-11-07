@@ -20,22 +20,24 @@ interface NavbarIconProps {
   href: string;
   icon: IconType;
 }
-
 const NavbarIcon: React.FC<NavbarIconProps> = ({ href, icon: Icon }) => {
-  const alt=`${href === "/" ? "Home" : "Products"}`;
-  
+  const pathname = usePathname();
+  const alt = href === "/" ? "Home" : "Products";
+
   return (
     <Link
       href={href}
-      className="scale-hover hover:text-fg-5 cursor-pointer my-auto "
+      className="scale-hover hover:text-fg-5 cursor-pointer my-auto"
       aria-label={`Go to ${alt}`}
     >
       <Icon
-        className={`text-2xl ${href === usePathname() ? "scale-120 md:scale-125 text-fg-5" : ""}`}
-        alt={alt}
+        className={`text-2xl ${
+          href === pathname ? "scale-120 md:scale-125 text-fg-5" : ""
+        }`}
       />
     </Link>
-)};
+  );
+};
 
 const Navbar = () => {
   const { count, setShowCart, showCart } = useStore((state) => state);
